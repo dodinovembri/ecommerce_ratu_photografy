@@ -8,9 +8,10 @@
             <div class="row">
                 <div class="col-lg-3">
                     <aside class="sidebar">
-                        <form action="page-search-results.html" method="get">
+                        <form action="{{ route('search') }}" method="POST">
+                            @csrf
                             <div class="input-group mb-3 pb-1">
-                                <input class="form-control text-1" placeholder="Search..." name="s" id="s" type="text">
+                                <input class="form-control text-1" placeholder="Search..." value="{{ isset($search) ? $search : '' }}" name="product_name" id="s" type="text">
                                 <span class="input-group-append">
                                     <button type="submit" class="btn btn-dark text-1 p-2"><i class="fas fa-search m-2"></i></button>
                                 </span>
@@ -28,6 +29,9 @@
 
                     <div class="masonry-loader masonry-loader-showing">
                         <div class="row products product-thumb-info-list" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
+                            <?php if (count($product) == 0) { ?>                                
+                                <div class="col-lg-4">No Product Found, Try another search</div>                            
+                            <?php } ?>
                             <?php foreach ($product as $key => $value) { ?>
                                 <div class="col-sm-6 col-lg-4 product">
                                     <span class="product-thumb-info border-0">

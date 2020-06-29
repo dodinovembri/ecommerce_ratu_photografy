@@ -15,7 +15,7 @@
                                                 <a href="tel:123-456-7890"><i class="fab fa-whatsapp text-4 text-color-primary" style="top: 0;"></i> 0711-581156</a>
                                             </li>
                                             <li class="nav-item nav-item-borders py-2 d-none d-sm-inline-flex">
-                                                <a href="mailto:mail@domain.com"><i class="far fa-envelope text-4 text-color-primary" style="top: 1px;"></i> info@ratuphotography.com</a>
+                                                <a href="mailto:info@ratuphotography.com"><i class="far fa-envelope text-4 text-color-primary" style="top: 1px;"></i> info@ratuphotography.com</a>
                                             </li>
                                         </ul>
                                     </nav>
@@ -26,10 +26,10 @@
                                     <nav class="header-nav-top">
                                         <ul class="nav nav-pills">
                                             <li class="nav-item nav-item-anim-icon d-none d-md-block">
-                                                <a class="nav-link pl-0" href="about-us.html"><i class="fas fa-angle-right"></i> About Us</a>
+                                                <a class="nav-link pl-0" href="{{ route('fe.about_us') }}"><i class="fas fa-angle-right"></i> About Us</a>
                                             </li>
                                             <li class="nav-item nav-item-anim-icon d-none d-md-block">
-                                                <a class="nav-link" href="contact-us.html"><i class="fas fa-angle-right"></i> Contact Us</a>
+                                                <a class="nav-link" href="{{ route('fe.contact_us') }}"><i class="fas fa-angle-right"></i> Contact Us</a>
                                             </li>
                                             <?php if (empty(auth()->user()->id)) { ?>
                                                 <li class="nav-item dropdown nav-item-left-border d-none d-sm-block">
@@ -101,12 +101,11 @@
                                                         <a href="#" title="Camera X1000" class="product-image"><img src="{{ asset('img') }}/{{ $value->image }}" alt="Camera X1000"></a>
                                                         <div class="product-details">
                                                             <p class="product-name">
-                                                                <a href="#">{{ $value->product_name }} X {{ $value->qty }} </a>
+                                                                {{ $value->product_name }} X {{ $value->qty }}
                                                             </p>
                                                             <p class="qty-price">
                                                                  1X <span class="price">{{ number_format($value->product_price, 2,',','.') }}</span>
-                                                            </p>
-                                                            <a href="#" title="Remove This Item" class="btn-remove"><i class="fas fa-times"></i></a>
+                                                            </p>                                                 
                                                         </div>
                                                     </li>                                                    
                                                 <?php } ?>
@@ -123,7 +122,7 @@
                                                 </div>                                                
                                                 <div class="actions">
                                                     <a class="btn btn-dark" href="{{ route('fe.cart.show') }}">View Cart</a>
-                                                    <a class="btn btn-primary" href="#">Checkout</a>
+                                                    <a class="btn btn-primary" href="{{ route('fe.order.store') }}">Checkout</a>
                                                 </div>                                                
                                             <?php } ?>
                                         </div>
@@ -148,7 +147,7 @@
                                                         </a>
                                                     </li>
                                                     <li class="dropdown dropdown-mega">
-                                                        <a class="dropdown-item dropdown-toggle" href="">
+                                                        <a class="dropdown-item dropdown-toggle" href="{{ route('index') }}">
                                                             Products
                                                         </a>
                                                     </li>

@@ -26,10 +26,13 @@ Route::get('/product_list/{id}', 'FrontendController@product_list')->name('produ
 Route::get('/cart/{id}', 'FrontendController@cart')->name('cart');
 
 Route::get('/home', 'FrontendController@index')->name('home');
+Route::post('/home', 'FrontendController@search')->name('search');
 Route::get('/admin', 'HomeController@index')->middleware(CheckRole::class)->name('admin');
 
 Route::name('fe.')->group(function () {
 	Route::get('fe/index', 'FrontendController@index')->name('index');
+	Route::get('fe/about_us', 'Fe\AboutUsController@index')->name('about_us');
+	Route::get('fe/contact_us', 'Fe\ContactUsController@index')->name('contact_us');
 
 	Route::name('cart.')->group(function () {
 		Route::post('fe/cart/store', 'Fe\CartController@store')->name('store');
