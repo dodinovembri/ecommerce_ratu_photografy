@@ -16,12 +16,6 @@
             <i class="fa fa-reorder"></i>
             <span>Customers Order</span>            
           </a>         
-        </li>
-        <li class="">
-          <a href="">
-            <i class="fa fa-th-list"></i>
-            <span>Suppliers Order</span>            
-          </a>         
         </li>        
         <li class="header">MASTER DATA</li>      
         <li class="">
@@ -37,7 +31,7 @@
           </a>
         </li>       
         <li class="header">SYSTEM CONFIGURATON</li>        
-        <li class="">
+        <li class="treeview menu">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>System</span>
@@ -46,9 +40,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class=""><i class="fa fa-circle-o"></i> Users</a></li>
+            <li class=""><a href="{{ route('admin.user.index') }}"><i class="fa fa-circle-o"></i> Users</a></li>
           </ul>
-        </li>      
+        </li>     
       </ul>
     </section>
     <!-- /.sidebar -->

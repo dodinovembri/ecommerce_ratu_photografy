@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {        
-        return view('admin.dashboard.index');
+    {
+        $data['customer_order'] = DB::table('order')->count();
+        $data['product'] = DB::table('product')->count();
+        $data['users'] = DB::table('users')->count();
+        return view('admin.dashboard.index', $data);
     }
 }

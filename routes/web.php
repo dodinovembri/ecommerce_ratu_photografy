@@ -53,6 +53,17 @@ Route::name('fe.')->group(function () {
 });
 
 Route::name('admin.')->group(function () {
+	
+	Route::name('user.')->group(function () {
+		Route::get('admin/user/index', 'Admin\UserController@index')->name('index');
+		Route::get('admin/user/create', 'Admin\UserController@create')->name('create');
+		Route::post('admin/user/store', 'Admin\UserController@store')->name('store');
+		Route::get('admin/user/show/{id}', 'Admin\UserController@show')->name('show');
+		Route::get('admin/user/edit/{id}', 'Admin\UserController@edit')->name('edit');
+		Route::post('admin/user/update/{id}', 'Admin\UserController@update')->name('update');
+		Route::post('admin/user/destroy/{id}', 'Admin\UserController@destroy')->name('destroy');
+	});
+
 	Route::name('product.')->group(function () {
 		Route::get('admin/product/index', 'Admin\ProductController@index')->name('index');
 		Route::get('admin/product/create', 'Admin\ProductController@create')->name('create');
