@@ -42,6 +42,14 @@ Route::name('fe.')->group(function () {
 		Route::post('fe/cart/update', 'Fe\CartController@update')->name('update');
 	});
 
+	Route::name('serviceq.')->group(function () {
+		Route::get('fe/serviceq/index', 'Fe\ServiceqController@index')->name('index');
+		Route::post('fe/serviceq/store', 'Fe\ServiceqController@store')->name('store');
+		// Route::get('fe/cart/show', 'Fe\CartController@show')->name('show');
+		// Route::get('fe/cart/destroy/{id}', 'Fe\CartController@destroy')->name('destroy');
+		// Route::post('fe/cart/update', 'Fe\CartController@update')->name('update');
+	});	
+
 	Route::name('order.')->group(function () {
 		Route::get('fe/order/store', 'Fe\OrderController@store')->name('store');
 	});	
@@ -92,5 +100,15 @@ Route::name('admin.')->group(function () {
 		Route::get('admin/order_status/edit/{id}', 'Admin\OrderStatusController@edit')->name('edit');
 		Route::post('admin/order_status/update/{id}', 'Admin\OrderStatusController@update')->name('update');
 		Route::post('admin/order_status/destroy/{id}', 'Admin\OrderStatusController@destroy')->name('destroy');
-	});		
+	});	
+
+	Route::name('questionnaire.')->group(function () {
+		Route::get('admin/questionnaire/index', 'Admin\QuestionnaireController@index')->name('index');
+		Route::get('admin/questionnaire/create', 'Admin\QuestionnaireController@create')->name('create');
+		Route::post('admin/questionnaire/store', 'Admin\QuestionnaireController@store')->name('store');
+		Route::get('admin/questionnaire/show/{id}', 'Admin\QuestionnaireController@show')->name('show');
+		Route::get('admin/questionnaire/edit/{id}', 'Admin\QuestionnaireController@edit')->name('edit');
+		Route::post('admin/questionnaire/update/{id}', 'Admin\QuestionnaireController@update')->name('update');
+		Route::post('admin/questionnaire/destroy/{id}', 'Admin\QuestionnaireController@destroy')->name('destroy');
+	});			
 });

@@ -23,7 +23,13 @@
             <i class="fa fa-gg-circle"></i>
             <span>Products</span>
           </a>
-        </li>         
+        </li>
+        <li class="">
+          <a href="{{ route('admin.questionnaire.index') }}">
+            <i class="fa fa-gg-circle"></i>
+            <span>Questionnaire</span>
+          </a>
+        </li>                 
         <li class="">
           <a href="{{ route('admin.order_status.index') }}">
             <i class="fa fa-list-alt"></i>
