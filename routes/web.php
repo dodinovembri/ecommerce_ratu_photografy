@@ -34,6 +34,10 @@ Route::name('fe.')->group(function () {
 	Route::get('fe/about_us', 'Fe\AboutUsController@index')->name('about_us');
 	Route::get('fe/contact_us', 'Fe\ContactUsController@index')->name('contact_us');
 
+	Route::name('review.')->group(function () {
+		Route::post('fe/review/store/{id}', 'Fe\ReviewController@store')->name('store');
+	});
+
 	Route::name('cart.')->group(function () {
 		Route::post('fe/cart/store', 'Fe\CartController@store')->name('store');
 		Route::get('fe/cart/index', 'Fe\CartController@index')->name('index');
@@ -45,13 +49,10 @@ Route::name('fe.')->group(function () {
 	Route::name('serviceq.')->group(function () {
 		Route::get('fe/serviceq/index', 'Fe\ServiceqController@index')->name('index');
 		Route::post('fe/serviceq/store', 'Fe\ServiceqController@store')->name('store');
-		// Route::get('fe/cart/show', 'Fe\CartController@show')->name('show');
-		// Route::get('fe/cart/destroy/{id}', 'Fe\CartController@destroy')->name('destroy');
-		// Route::post('fe/cart/update', 'Fe\CartController@update')->name('update');
 	});	
 
 	Route::name('order.')->group(function () {
-		Route::get('fe/order/store', 'Fe\OrderController@store')->name('store');
+		Route::post('fe/order/store', 'Fe\OrderController@store')->name('store');
 	});	
 
 	Route::name('history.')->group(function () {
@@ -110,5 +111,15 @@ Route::name('admin.')->group(function () {
 		Route::get('admin/questionnaire/edit/{id}', 'Admin\QuestionnaireController@edit')->name('edit');
 		Route::post('admin/questionnaire/update/{id}', 'Admin\QuestionnaireController@update')->name('update');
 		Route::post('admin/questionnaire/destroy/{id}', 'Admin\QuestionnaireController@destroy')->name('destroy');
-	});			
+	});		
+
+	Route::name('payment_method.')->group(function () {
+		Route::get('admin/payment_method/index', 'Admin\PaymentMethodController@index')->name('index');
+		Route::get('admin/payment_method/create', 'Admin\PaymentMethodController@create')->name('create');
+		Route::post('admin/payment_method/store', 'Admin\PaymentMethodController@store')->name('store');
+		Route::get('admin/payment_method/show/{id}', 'Admin\PaymentMethodController@show')->name('show');
+		Route::get('admin/payment_method/edit/{id}', 'Admin\PaymentMethodController@edit')->name('edit');
+		Route::post('admin/payment_method/update/{id}', 'Admin\PaymentMethodController@update')->name('update');
+		Route::post('admin/payment_method/destroy/{id}', 'Admin\PaymentMethodController@destroy')->name('destroy');
+	});		
 });

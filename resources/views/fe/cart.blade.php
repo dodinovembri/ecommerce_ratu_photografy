@@ -76,72 +76,46 @@
                         <div class="col">
                             <div class="tabs tabs-product mb-2">
                                 <ul class="nav nav-tabs">
-                                    <li class="nav-item active"><a class="nav-link py-3 px-4" href="#productReviews" data-toggle="tab">Reviews (2)</a></li>
+                                    <li class="nav-item active"><a class="nav-link py-3 px-4" href="#productReviews" data-toggle="tab">Reviews ( {{ count($review) }} )</a></li>
                                 </ul>
                                 <div class="tab-content p-0">
                                     <div class="tab-pane p-4 active" id="productReviews">
                                         <ul class="comments">
-                                            <li>
-                                                <div class="comment">
-                                                    <div class="img-thumbnail border-0 p-0 d-none d-md-block">
-                                                        <img class="avatar" alt="" src="img/avatars/avatar-2.jpg">
-                                                    </div>
-                                                    <div class="comment-block">
-                                                        <div class="comment-arrow"></div>
-                                                        <span class="comment-by">
-                                                            <strong>Jack Doe</strong>
-                                                            <span class="float-right">
-                                                                <div class="pb-0 clearfix">
-                                                                    <div title="Rated 3 out of 5" class="float-left">
-                                                                        <input type="text" class="d-none" value="3" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}">
+                                            <?php foreach ($review as $key => $value) { ?>
+                                                 <li>
+                                                    <div class="comment">
+                                                        <div class="img-thumbnail border-0 p-0 d-none d-md-block">
+                                                            <img class="avatar" alt="" src="img/avatars/avatar-2.jpg">
+                                                        </div>
+                                                        <div class="comment-block">
+                                                            <div class="comment-arrow"></div>
+                                                            <span class="comment-by">
+                                                                <strong>Jack Doe</strong>
+                                                                <span class="float-right">
+                                                                    <div class="pb-0 clearfix">
+                                                                        <div title="Rated 3 out of 5" class="float-left">
+                                                                            <input type="text" class="d-none" value="{{ $value->rating }}" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}">
+                                                                        </div>
                                                                     </div>
-                            
-                                                                    <div class="review-num">
-                                                                        <span class="count" itemprop="ratingCount">2</span> reviews
-                                                                    </div>
-                                                                </div>
+                                                                </span>
                                                             </span>
-                                                        </span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
+                                                            <p>{{ $value->review }}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="comment">
-                                                    <div class="img-thumbnail border-0 p-0 d-none d-md-block">
-                                                        <img class="avatar" alt="" src="img/avatars/avatar.jpg">
-                                                    </div>
-                                                    <div class="comment-block">
-                                                        <div class="comment-arrow"></div>
-                                                        <span class="comment-by">
-                                                            <strong>John Doe</strong>
-                                                            <span class="float-right">
-                                                                <div class="pb-0 clearfix">
-                                                                    <div title="Rated 3 out of 5" class="float-left">
-                                                                        <input type="text" class="d-none" value="3" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}">
-                                                                    </div>
-                            
-                                                                    <div class="review-num">
-                                                                        <span class="count" itemprop="ratingCount">2</span> reviews
-                                                                    </div>
-                                                                </div>
-                                                            </span>
-                                                        </span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra odio, gravida urna varius vitae, gravida pellentesque urna varius vitae.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                </li>   
+                                            <?php } ?>                                            
                                         </ul>
                                         <hr class="solid my-5">
                                         <h4>Add a review</h4>
                                         <div class="row">
                                             <div class="col">
                             
-                                                <form action="" id="submitReview" method="post">
+                                                <form action="{{ route('fe.review.store', $product->id) }}" id="submitReview" method="post">
+                                                    @csrf                                                    
                                                     <div class="form-row">
                                                         <div class="form-group col pb-2">
                                                             <label class="required font-weight-bold text-dark">Rating</label>
-                                                            <input type="text" class="rating-loading" value="0" title="" data-plugin-star-rating data-plugin-options="{'color': 'primary', 'size':'xs'}">
+                                                            <input type="text" class="rating-loading" name="rating" title="" data-plugin-star-rating data-plugin-options="{'color': 'primary', 'size':'xs'}">
                                                         </div>
                                                     </div>
                                                     <div class="form-row">

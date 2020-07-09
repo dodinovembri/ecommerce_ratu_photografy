@@ -8,6 +8,8 @@ use App\Model\CartModel;
 use App\Model\CartDetailModel;
 use App\User;
 use App\Model\ProductModel;
+use App\Model\PaymentMethodModel;
+use App\Model\PointModel;
 
 
 class CartController extends Controller
@@ -121,6 +123,8 @@ class CartController extends Controller
     {
         $data['cart'] = CartModel::select('cart.*', 'cart_detail.id_product', 'cart_detail.qty as qty', 'cart_detail.id as cart_detail_id', 'cart_detail.subtotal as subtotal', 'product.id as id_product', 'product.sku as sku', 'product.name as product_name', 'product.image as product_image', 'product.price as product_price')->join('cart_detail', 'cart.id', '=', 'cart_detail.id_cart')->join('product', 'cart_detail.id_product', '=', 'product.id')->where('user_id', '=', auth()->user()->id)->get();
         $data['total_price'] = CartModel::where('user_id', auth()->user()->id)->first();
+        $data['payment_method'] = PaymentMethodModel::all();
+        $data['point'] = PointModel::where('user_id', auth()->user()->id)->first();
         return view('fe.cart.show', $data);
     }
 

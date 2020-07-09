@@ -35,7 +35,13 @@
             <i class="fa fa-list-alt"></i>
             <span>Order Status</span>      
           </a>
-        </li>       
+        </li>  
+        <li class="">
+          <a href="{{ route('admin.payment_method.index') }}">
+            <i class="fa fa-list-alt"></i>
+            <span>Payment Method</span>      
+          </a>
+        </li>              
         <li class="header">SYSTEM CONFIGURATON</li>        
         <li class="treeview menu">
           <a href="#">
