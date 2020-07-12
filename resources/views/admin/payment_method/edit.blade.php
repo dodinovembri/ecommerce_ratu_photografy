@@ -45,7 +45,7 @@
                 </div>                                                                                                                                                       
                 <br>
                 <button type="submit" class="btn btn-success">Save</button>
-                <a href=""><button type="button" class="btn btn-danger">Cancel</button></a>
+                <a href="{{ route('admin.payment_method.index') }}"><button type="button" class="btn btn-danger">Cancel</button></a>
 
               </form>
             </div>

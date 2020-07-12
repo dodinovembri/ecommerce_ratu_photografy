@@ -42,7 +42,7 @@
                 <tr>
                   <th>No</th>
                   <th>Order ID</th>
-                  <th>User ID</th>
+                  <th>User Name</th>
                   <th>Status</th>
                   <th>Price</th>
                   <th>Action</th>
@@ -52,16 +52,16 @@
                 <?php $no = 0; foreach ($order as $key => $value) { $no++; ?>
                   <tr>
                     <td><?= $no ?></td>
-                    <td><u><b><a href="">RT00-{{ $value->id }}</a></b></u></td>
-                    <td>{{ $value->user_id }}</td>
-                    <td>{{ $value->status }}</td>
-                    <td>{{ $value->total_price }}</td>                    
+                    <td><u><b><a href="">RT00-{{ $value->order_id }}</a></b></u></td>
+                    <td>{{ $value->name }}</td>
+                    <td>{{ $value->ket_status }}</td>
+                    <td>Rp. {{ number_format($value->total_price, 0, ',', '.') }}</td>                    
                     <td>                                                                          
-                      <a data-toggle="modal" data-target="#modal-danger-{{ $value->id }}" href="javascript::"><i class="fa  fa-edit"></i></a>
+                      <a data-toggle="modal" data-target="#modal-info-{{ $value->id }}" href="javascript::"><i class="fa  fa-edit"></i></a>
                     </td>
                   </tr>
 
-                  <div class="modal modal-danger fade" id="modal-danger-<?php echo $value->id ?>">
+                  <div class="modal modal-info fade" id="modal-info-<?php echo $value->id ?>">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -81,10 +81,6 @@
                               <?php } ?>                                                           
                             </select>
                           </div>                         
-                          <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control" rows="6" name="description"> </textarea>
-                          </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>

@@ -31,6 +31,7 @@ Route::get('/admin', 'HomeController@index')->middleware(CheckRole::class)->name
 
 Route::name('fe.')->group(function () {
 	Route::get('fe/index', 'FrontendController@index')->name('index');
+	Route::get('fe/profile', 'Fe\ProfileController@index')->name('profile');
 	Route::get('fe/about_us', 'Fe\AboutUsController@index')->name('about_us');
 	Route::get('fe/contact_us', 'Fe\ContactUsController@index')->name('contact_us');
 
@@ -83,6 +84,16 @@ Route::name('admin.')->group(function () {
 		Route::post('admin/product/destroy/{id}', 'Admin\ProductController@destroy')->name('destroy');
 	});
 
+	Route::name('product_category.')->group(function () {
+		Route::get('admin/product_category/index', 'Admin\ProductCategoryController@index')->name('index');
+		Route::get('admin/product_category/create', 'Admin\ProductCategoryController@create')->name('create');
+		Route::post('admin/product_category/store', 'Admin\ProductCategoryController@store')->name('store');
+		Route::get('admin/product_category/show/{id}', 'Admin\ProductCategoryController@show')->name('show');
+		Route::get('admin/product_category/edit/{id}', 'Admin\ProductCategoryController@edit')->name('edit');
+		Route::post('admin/product_category/update/{id}', 'Admin\ProductCategoryController@update')->name('update');
+		Route::post('admin/product_category/destroy/{id}', 'Admin\ProductCategoryController@destroy')->name('destroy');
+	});	
+
 	Route::name('order.')->group(function () {
 		Route::get('admin/order/index', 'Admin\OrderController@index')->name('index');
 		Route::get('admin/order/create', 'Admin\OrderController@create')->name('create');
@@ -121,5 +132,11 @@ Route::name('admin.')->group(function () {
 		Route::get('admin/payment_method/edit/{id}', 'Admin\PaymentMethodController@edit')->name('edit');
 		Route::post('admin/payment_method/update/{id}', 'Admin\PaymentMethodController@update')->name('update');
 		Route::post('admin/payment_method/destroy/{id}', 'Admin\PaymentMethodController@destroy')->name('destroy');
-	});		
+	});	
+
+	Route::name('discount_point.')->group(function () {
+		Route::get('admin/discount_point/index', 'Admin\DiscountPointController@index')->name('index');
+		Route::get('admin/discount_point/edit/{id}', 'Admin\DiscountPointController@edit')->name('edit');
+		Route::post('admin/discount_point/update/{id}', 'Admin\DiscountPointController@update')->name('update');
+	});	
 });

@@ -11,8 +11,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{ route('admin.product.index') }}">Product List</a></li>
-        <li class="active">Edit Product</li>
+        <li><a href="{{ route('admin.user.index') }}">Users List</a></li>
+        <li class="active">Edit User</li>
       </ol>
     </section>
 
@@ -53,7 +53,7 @@
                 </div>                                                                                                                                                         
                 <br>
                 <button type="submit" class="btn btn-success">Save</button>
-                <a href=""><button type="button" class="btn btn-danger">Cancel</button></a>
+                <a href="{{ route('admin.user.index') }}"><button type="button" class="btn btn-danger">Cancel</button></a>
 
               </form>
             </div>

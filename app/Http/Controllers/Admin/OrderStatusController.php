@@ -15,7 +15,7 @@ class OrderStatusController extends Controller
      */
     public function index()
     {
-        $data['orderstatus'] = OrderStatusModel::all();
+        $data['order_status'] = OrderStatusModel::all();
         return view('admin.order_status.index', $data);
     }
 
@@ -55,7 +55,8 @@ class OrderStatusController extends Controller
      */
     public function show($id)
     {
-        return $id;
+        $data['order_status'] = OrderStatusModel::find($id);
+        return view('admin.order_status.show', $data);
     }
 
     /**
@@ -66,7 +67,9 @@ class OrderStatusController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['order_status'] = OrderStatusModel::find($id);
+
+        return view('admin.order_status.edit', $data);  
     }
 
     /**
@@ -78,7 +81,14 @@ class OrderStatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update = OrderStatusModel::find($id);
+        $update->status = $request->input('status');
+        $update->ket = $request->input('ket');
+        $update->updated_by =  auth()->user()->email;
+        $update->updated_at =  date("Y-m-d H:i:s");   
+        $update->update();
+
+        return redirect(route('admin.order_status.index'))->with('message', 'Order Status success updated !'); 
     }
 
     /**
@@ -89,6 +99,7 @@ class OrderStatusController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $find = OrderStatusModel::find($id)->delete();
+        return redirect(route('admin.order_status.index'))->with('message', 'Order Status success Deleted !');
     }
 }

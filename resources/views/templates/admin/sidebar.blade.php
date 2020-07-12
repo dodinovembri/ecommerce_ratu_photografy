@@ -25,6 +25,12 @@
           </a>
         </li>
         <li class="">
+          <a href="{{ route('admin.product_category.index') }}">
+            <i class="fa fa-gg-circle"></i>
+            <span>Product Category</span>
+          </a>
+        </li>        
+        <li class="">
           <a href="{{ route('admin.questionnaire.index') }}">
             <i class="fa fa-gg-circle"></i>
             <span>Questionnaire</span>
@@ -41,7 +47,13 @@
             <i class="fa fa-list-alt"></i>
             <span>Payment Method</span>      
           </a>
-        </li>              
+        </li> 
+        <li class="">
+          <a href="{{ route('admin.discount_point.index') }}">
+            <i class="fa fa-list-alt"></i>
+            <span>Discount Points</span>      
+          </a>
+        </li>                      
         <li class="header">SYSTEM CONFIGURATON</li>        
         <li class="treeview menu">
           <a href="#">

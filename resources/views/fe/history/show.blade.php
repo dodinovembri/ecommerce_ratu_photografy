@@ -7,7 +7,7 @@
 
 			<div class="row">
 				<div class="col">
-					<h4 class="mb-2 mt-5">Vertical</h4>
+					<h4 class="mb-2 mt-5">Order Tracking</h4>
 
 					<div class="process process-vertical py-4">
 						<?php $no = 0; $delay = 0; foreach ($history as $key => $value) { $no++; $delay = +200; ?>

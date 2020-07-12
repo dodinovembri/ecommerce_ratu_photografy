@@ -4,25 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\OrderModel;
-use App\Model\OrderHistoryModel;
-use App\Model\OrderStatusModel;
-use Illuminate\Support\Facades\DB;
+use App\Model\DiscountPointModel;
 
-class OrderController extends Controller
+class DiscountPointController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        $data['order'] = DB::select('SELECT `order`.*, `order`.id as order_id, users.name as name, order_status.status as ket_status FROM `order` JOIN order_status ON `order`.status = order_status.id JOIN users ON `order`.user_id = users.id');
-        // $data['order'] = OrderModel::all();
-        $data['orderstatus'] = OrderStatusModel::all();
-        return view('admin.order.index', $data);
+        $data['discount_point'] = DiscountPointModel::all();     
+        return view('admin.discount_point.index', $data);
     }
 
     /**
@@ -65,7 +59,8 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['discount_point'] = DiscountPointModel::find($id);
+        return view('admin.discount_point.edit', $data);
     }
 
     /**
@@ -77,21 +72,14 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update_order = OrderModel::find($id);
-        $update_order->status = $request->input('status');
-        $update_order->updated_by = auth()->user()->email;
-        $update_order->updated_at = date("Y-m-d H:i:s");
-        $update_order->update();
+        $update = DiscountPointModel::find($id);
+        $update->discount_point = $request->input('discount_point');
+        $update->ket = $request->input('ket');
+        $update->updated_by =  auth()->user()->email;
+        $update->updated_at =  date("Y-m-d H:i:s");   
+        $update->save();
 
-        $insert_history = new OrderHistoryModel();
-        $insert_history->user_id = auth()->user()->id;
-        $insert_history->id_order = $id;
-        $insert_history->status = $request->input('status');
-        $insert_history->created_by = auth()->user()->email;
-        $insert_history->created_at = date("Y-m-d H:i:s");        
-        $insert_history->save();
-
-        return redirect(route('admin.order.index'))->with('message', 'Order success updated !');        
+        return redirect(route('admin.discount_point.index'))->with('message', 'Discount point success updated !');
     }
 
     /**

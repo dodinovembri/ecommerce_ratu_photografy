@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -66,7 +67,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['user'] = DB::select("SELECT users.*, user_point.point AS points FROM users JOIN user_point ON users.id = user_point.user_id");
+        return view('admin.user.show', $data);
     }
 
     /**

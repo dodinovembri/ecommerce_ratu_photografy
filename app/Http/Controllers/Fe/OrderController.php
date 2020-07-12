@@ -12,6 +12,7 @@ use App\Model\OrderModel;
 use App\Model\OrderDetailModel;
 use App\Model\OrderHistoryModel;
 use App\Model\PointModel;
+use Illuminate\Support\Facades\DB;
 
 
 class OrderController extends Controller
@@ -44,6 +45,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {        
+        $get_discount_point = DB::select('SELECT * FROM discount_point');        
         $get_order = CartModel::where('user_id', auth()->user()->id)->first();
         $get_order_detail = CartDetailModel::where('id_cart', $get_order->id)->get();
 
@@ -93,14 +95,14 @@ class OrderController extends Controller
      if (!isset($point->point)) {
         $insert_point = new PointModel();
         $insert_point->user_id = auth()->user()->id;
-        $insert_point->point = (10/100 * $get_order->total_price);
+        $insert_point->point = ($get_discount_point[0]->discount_point/100 * $get_order->total_price);
         $insert_point->created_by =  auth()->user()->email;
         $insert_point->created_at =  date("Y-m-d H:i:s");
         $insert_point->save();
 
     }else{
         $update = PointModel::where('user_id', auth()->user()->id)->first();
-        $update->point = $point->point + (10/100 * $get_order->total_price);
+        $update->point = $point->point + ($get_discount_point[0]->discount_point/100 * $get_order->total_price);
         $update->updated_by = auth()->user()->id;
         $update->updated_at = date("Y-m-d H:i:s");
         $update->update();

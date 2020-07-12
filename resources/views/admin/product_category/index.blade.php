@@ -10,7 +10,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>        
-        <li class="active">Users List</li>
+        <li class="active">Product Category List</li>
       </ol>
     </section>
 
@@ -20,8 +20,8 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Users List</h3><br><br>
-               <a href="{{ route('admin.user.create') }}"><button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Add New</button></a>
+              <h3 class="box-title">Product Category List</h3><br><br>
+               <a href="{{ route('admin.product_category.create') }}"><button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Add New</button></a>
               <br><br>
                 @if(session()->has('message'))
                   <div class="alert alert-success alert-dismissible">
@@ -42,26 +42,17 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Role</th>                  
-                  <th>Actions</th>                  
+                  <th>Category Name</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php $no = 0; foreach ($users as $key => $value) { $no++; ?>
+                <?php $no = 0; foreach ($product_category as $key => $value) { $no++; ?>
                   <tr>
                     <td><?= $no ?></td>
-                    <td>{{ $value->name }}</td>
-                    <td>{{ $value->email }}</td>
-                    <td><?php if ($value->role == 1) { ?>
-                      <span class="label label-info">Admin</span></td>
-                    <?php }elseif ($value->role == 2) { ?>
-                      <span class="label label-danger">Customers</span></td>
-                    <?php } ?>                                      
+                    <td>{{ $value->category_name }}</td>
                     <td>                      
-                      <a href="{{ route('admin.user.show', $value->id) }}"><i class="fa fa-eye"></i></a> -
-                      <a href="{{ route('admin.user.edit', $value->id) }}"><i class="fa fa-edit"></i></a> -                                                         
+                      <a href="{{ route('admin.product_category.show', $value->id) }}"><i class="fa fa-eye"></i></a> -                       <a href="{{ route('admin.product_category.edit', $value->id) }}"><i class="fa fa-edit"></i></a> -                                                         
                       <a data-toggle="modal" data-target="#modal-danger-{{ $value->id }}" href="javascript::"><i class="fa  fa-trash-o"></i></a>
                     </td>
                   </tr>
@@ -79,7 +70,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                          <form method="POST" action="{{ route('admin.user.destroy', $value->id) }}">
+                          <form method="POST" action="{{ route('admin.product_category.destroy', $value->id) }}">
                             @csrf
                           <button type="submit" class="btn btn-outline">Delete</button>                          
                           </form>

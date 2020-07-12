@@ -11,8 +11,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{ route('admin.order_status.index') }}">Order Status List</a></li>
-        <li class="active">Order Status Detail</li>
+        <li><a href="{{ route('admin.product_category.index') }}">Product Category List</a></li>
+        <li class="active">Product Category Detail</li>
       </ol>
     </section>
 
@@ -23,21 +23,17 @@
           <!-- general form elements disabled -->
           <div class="box box-warning">
             <div class="box-header with-border">
-              <h3 class="box-title">Order Status Detail</h3><br><br>
+              <h3 class="box-title">Product Category Detail</h3><br><br>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <form role="form" method="POST" action="" enctype="multipart/form-data">  
                 @csrf                            
                 <div class="form-group">
-                  <label>Status</label>
-                  <input type="text" min="0" class="form-control" name="status" value="{{ $order_status->status }}" placeholder="Enter ..." readonly>
-                </div>                                                                  
-                <div class="form-group">
-                  <label>Keternagan</label>
-                  <textarea class="form-control" rows="6" name="ket" readonly>{{ $order_status->ket }}</textarea>
-                </div>                                                                                                                       
-                <a href="{{ route('admin.order_status.index') }}"><button type="button" class="btn btn-danger">Back to List</button></a>
+                  <label>Name</label>
+                  <input type="text" min="0" class="form-control" name="name" value="{{ $product_category->category_name }}" placeholder="Enter ..." readonly>
+                </div>     
+                <a href="{{ route('admin.product_category.index') }}"><button type="button" class="btn btn-danger">Back to List</button></a>
 
               </form>
             </div>

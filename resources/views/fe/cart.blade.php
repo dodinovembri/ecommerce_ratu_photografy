@@ -39,10 +39,10 @@
                                 <h1 class="mb-0 font-weight-bold text-7">{{ $product->name }}</h1>
                                 <div class="pb-0 clearfix">
                                     <div title="Rated 3 out of 5" class="float-left">
-                                        <input type="text" class="d-none" value="3" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}">
+                                        <input type="text" class="d-none" value="{{ count($review) > 0 ? $total_rating[0]->total_rating / count($review) : '0' }}" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}">
                                     </div>
                                     <div class="review-num">
-                                        <span class="count" itemprop="ratingCount">2</span> reviews
+                                        <span class="count" itemprop="ratingCount">{{ count($review) }}</span> reviews
                                     </div>
                                 </div>
                                 <p class="price">
@@ -63,7 +63,7 @@
                                 </form>
 
                                 <div class="product-meta">
-                                    <span class="posted-in">Categories: <a rel="tag" href="#">Accessories</a>, <a rel="tag" href="#">Bags</a>.</span>
+                                    <span class="posted-in"></span>
                                 </div>
 
                             </div>
@@ -90,7 +90,7 @@
                                                         <div class="comment-block">
                                                             <div class="comment-arrow"></div>
                                                             <span class="comment-by">
-                                                                <strong>Jack Doe</strong>
+                                                                <strong>{{ $value->name }}</strong>
                                                                 <span class="float-right">
                                                                     <div class="pb-0 clearfix">
                                                                         <div title="Rated 3 out of 5" class="float-left">

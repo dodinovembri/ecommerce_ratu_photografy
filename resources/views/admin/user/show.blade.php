@@ -11,8 +11,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{ route('admin.product.index') }}">Product List</a></li>
-        <li class="active">Product Detail</li>
+        <li><a href="{{ route('admin.user.index') }}">User List</a></li>
+        <li class="active">User Detail</li>
       </ol>
     </section>
 
@@ -23,36 +23,25 @@
           <!-- general form elements disabled -->
           <div class="box box-warning">
             <div class="box-header with-border">
-              <h3 class="box-title">Product Detail</h3><br><br>
+              <h3 class="box-title">User Detail</h3><br><br>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <form role="form" method="POST" action="" enctype="multipart/form-data">  
                 @csrf                            
                 <div class="form-group">
-                  <label>SKU</label>
-                  <input type="text" class="form-control" name="sku" value="{{ $product->sku }}" placeholder="Enter ..." readonly>
+                  <label>Username</label>
+                  <input type="text" class="form-control" name="username" value="{{ $user[0]->name }}" placeholder="Enter ..." required>
                 </div>
                 <div class="form-group">
-                  <label>Name</label>
-                  <input type="text" min="0" class="form-control" name="name" value="{{ $product->name }}" placeholder="Enter ..." readonly>
-                </div>             
+                  <label>Email</label>
+                  <input type="text" class="form-control" name="email" value="{{ $user[0]->email}}" placeholder="Enter ..." required>
+                </div>                                                                                                                     
                 <div class="form-group">
-                  <label>Category</label>
-                  <input type="text" min="0" class="form-control" name="price" value="{{ $product->category }}" placeholder="Enter ..." readonly>
-                </div>                 
-                <div class="form-group">
-                  <label>Price</label>
-                  <input type="text" min="0" class="form-control" name="price" value="{{ $product->price }}" placeholder="Enter ..." readonly>
-                </div> 
-                <div class="form-group">
-                  <label>Images</label> <br>  
-                  <img src="{{ asset('img') }}/{{ $product->image }}" width="20%">
-                </div>                                                       
-                <div class="form-group">
-                  <label>Description</label>
-                  <textarea class="form-control" rows="6" name="description" readonly>{{ $product->description }}</textarea>
-                </div>                                                                                                                       
+                  <label>Points Value</label>
+                  <input type="text" class="form-control" name="email" value="Rp. {{ number_format($user[0]->points, 0, ',', '.') }}" placeholder="Enter ..." required>
+                </div>                
+                <a href="{{ route('admin.user.index') }}"><button type="button" class="btn btn-danger">Back to List</button></a>
 
               </form>
             </div>

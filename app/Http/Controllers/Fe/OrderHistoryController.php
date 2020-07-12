@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\OrderHistoryModel;
 use App\Model\OrderModel;
+use Illuminate\Support\Facades\DB;
 
 
 class OrderHistoryController extends Controller
@@ -17,7 +18,8 @@ class OrderHistoryController extends Controller
      */
     public function index()
     {
-        $data['order'] = OrderModel::where('user_id', auth()->user()->id)->get();
+        // return $data['order'] = OrderModel::where('user_id', auth()->user()->id)->get();
+        $data['order'] = DB::select('SELECT * FROM `order` JOIN order_status ON `order`.`status` = order_status.id ORDER BY `order`.id DESC');
         return view('fe.history.index', $data);
     }
 

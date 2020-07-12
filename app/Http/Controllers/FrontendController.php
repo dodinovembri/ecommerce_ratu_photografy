@@ -30,7 +30,9 @@ class FrontendController extends Controller
         $data['category'] = CategoryModel::all();
         $data['product'] = ProductModel::find($id);
         $data['product_list'] = ProductModel::where('id_category', $id)->get();
-        $data['review'] = ProductReviewModel::where('product_id', $id)->get();
+        // return $data['review'] = ProductReviewModel::where('product_id', $id)->get();
+        $data['review'] = DB::select("SELECT * FROM `product_review` JOIN users ON product_review.user_id = users.id WHERE product_id = $id");
+        $data['total_rating'] = DB::select("SELECT SUM(rating) AS total_rating FROM product_review WHERE product_id = $id");
         return view('fe.cart', $data);
     }
 
