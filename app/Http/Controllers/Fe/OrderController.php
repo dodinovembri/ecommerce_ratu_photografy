@@ -51,7 +51,7 @@ class OrderController extends Controller
 
         $create_order = new OrderModel();
         $create_order->user_id = auth()->user()->id;
-        $create_order->total_price = $get_order->total_price;
+        $create_order->total_price = $get_order->total_price - $request->total_point_used;;
         $create_order->status = $get_order->status;
         $create_order->payment_method_id = $request->payment_method;
         $create_order->total_point_used = $request->total_point_used;

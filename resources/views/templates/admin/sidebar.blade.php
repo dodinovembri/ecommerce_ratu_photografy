@@ -61,7 +61,7 @@
           </a>
         </li>                      
         <li class="header">SYSTEM CONFIGURATON</li>        
-        <li class="treeview menu active">
+        <li class="treeview menu {{(Request::is('admin/user/*')) ? 'active' : ''}}">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>System</span>
