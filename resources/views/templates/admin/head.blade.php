@@ -19,15 +19,9 @@
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">              
-              <i  class="fa fa-user"></i>
-              <span class="hidden-xs"></span>
-            </a>
-          </li>
+          <!-- User Account: style can be found in dropdown.less -->          
           <!-- Control Sidebar Toggle Button -->
-          <li>
+          <li style="margin-top: 12px; margin-right: 10px">
             <form method="post" action="{{ route('logout') }}">
               @csrf
               <button type="submit"><a href=""><i  class="fa fa-sign-out"></i></a></button>

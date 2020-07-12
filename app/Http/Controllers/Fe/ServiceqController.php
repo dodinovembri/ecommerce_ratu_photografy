@@ -42,16 +42,17 @@ class ServiceqController extends Controller
      */
     public function store(Request $request)
     {            
-        $count = count($request->questionnaire_id);
+
+        $count = count($request->questionnaire_id);        
         for ($i=0; $i < $count; $i++) { 
             $insert = new QuestionnaireCustomerModel();
             $insert->user_id = auth()->user()->id;
-            $insert->questionnaire_id = $request->questionnaire_id[$i];            
+            $insert->questionnaire_id = $request->questionnaire_id[$i];                     
             $insert->score_hope = $request->score_hope[$i];
             $insert->score_actual = $request->score_actual[$i];
             $insert->created_by =  auth()->user()->email;
             $insert->created_at =  date("Y-m-d H:i:s");            
-            $insert->save();
+            $insert->save();            
         }
 
         return redirect(route('index'))->with('message', 'Questionnaire success Added !');

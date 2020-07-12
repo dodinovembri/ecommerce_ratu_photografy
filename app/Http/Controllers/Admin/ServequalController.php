@@ -1,23 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Fe;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\ProductReviewModel;
+use App\Model\ViewQustionnaireCustomerModel;
+use Illuminate\Support\Facades\DB;
 
-
-class ReviewController extends Controller
+class ServequalController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');  
-        if (auth()->user() == 2) {
-                  return redirect(route('home'));
-              }      
-    }
-        
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +16,10 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $data['total'] = DB::select("SELECT SUM(hope) AS hope, SUM(actual) AS actual FROM questionnaire_subtotal");
+        $data['total_questionnaire'] = DB::select('SELECT count(id) AS total_questionnaire FROM questionnaire');
+        $data['total_responden'] = DB::select('SELECT count(distinct(user_id)) AS total_responden FROM questionnaire_customers');
+        return view('admin.servequal.index', $data);
     }
 
     /**
@@ -44,18 +38,9 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $insert = new ProductReviewModel();
-        $insert->user_id = auth()->user()->id;
-        $insert->product_id = $id;
-        $insert->rating = $request->rating;
-        $insert->review = $request->review;  
-        $insert->created_by =  auth()->user()->email;
-        $insert->created_at =  date("Y-m-d H:i:s");  
-        $insert->save();
-        
-        return redirect()->back();
+        //
     }
 
     /**

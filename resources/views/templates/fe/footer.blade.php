@@ -27,7 +27,6 @@
                                             <p class="mb-1"><a href="{{ route('fe.history.index') }}" class="text-3 link-hover-style-1">Order History</a></p>
                                         <?php } ?>
                                         <p class="mb-1"><a href="#" class="text-3 link-hover-style-1">Advanced search</a></p>
-                                        <p class="mb-1"><a href="{{ route('admin') }}" class="text-3 link-hover-style-1">Login</a></p>
                                     </div>
                                 </div>
                             </div>

@@ -139,4 +139,10 @@ Route::name('admin.')->group(function () {
 		Route::get('admin/discount_point/edit/{id}', 'Admin\DiscountPointController@edit')->name('edit');
 		Route::post('admin/discount_point/update/{id}', 'Admin\DiscountPointController@update')->name('update');
 	});	
+
+	Route::name('servequal.')->group(function () {
+		Route::get('admin/servequal/index', 'Admin\ServequalController@index')->name('index');
+		Route::get('admin/servequal/edit/{id}', 'Admin\ServequalController@edit')->name('edit');
+		Route::post('admin/servequal/update/{id}', 'Admin\ServequalController@update')->name('update');
+	});		
 });
