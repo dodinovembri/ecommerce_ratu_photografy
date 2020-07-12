@@ -19,7 +19,7 @@ class OrderHistoryController extends Controller
     public function index()
     {
         // return $data['order'] = OrderModel::where('user_id', auth()->user()->id)->get();        
-        $data['order'] = DB::select('SELECT `order`.*, order_status.status AS status FROM `order` JOIN order_status ON `order`.`status` = order_status.id ORDER BY `order`.id DESC');
+        $data['order'] = DB::select('SELECT `order`.*, order_status.status AS status FROM `order` JOIN order_status ON `order`.`status` = order_status.id WHERE `order`.user_id = "'.auth()->user()->id.'" ORDER BY `order`.id DESC');
         return view('fe.history.index', $data);
     }
 

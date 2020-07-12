@@ -41,7 +41,12 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Points Value</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="Rp. {{ number_format($user[0]->point, 0, ',', '.') }}">
+                                        <?php if (isset($user[0]->point)) {
+                                            $points = number_format($user[0]->point, 0, ',', '.');
+                                        }else{
+                                            $points = 0;
+                                        } ?>
+                                        <input class="form-control" type="text" value="Rp. {{ $points }}">
                                     </div>
                                 </div>                                
                                 <div class="form-group row">

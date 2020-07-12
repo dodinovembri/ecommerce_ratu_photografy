@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Model\DiscountPointModel;
+use App\Model\PointModel;
 
 class ProfileController extends Controller
 {
@@ -17,7 +19,12 @@ class ProfileController extends Controller
     public function index()
     {
         // return $data['user'] = User::find(auth()->user()->id)->joinPoint()->first();
-        $data['user'] = DB::select('SELECT * FROM `users` JOIN user_point ON users.id = user_point.user_id WHERE users.id = "'.auth()->user()->id.'"');
+        $cek_user_point = PointModel::where('user_id', auth()->user()->id)->first();
+        if (empty($cek_user_point)) {
+            $data['user'] = DB::select('SELECT * FROM users WHERE id = "'.auth()->user()->id.'" ');
+        }else{            
+            $data['user'] = DB::select('SELECT * FROM `users` JOIN user_point ON users.id = user_point.user_id WHERE users.id = "'.auth()->user()->id.'"');
+        }
         return view('fe.profile.index', $data);
     }
 

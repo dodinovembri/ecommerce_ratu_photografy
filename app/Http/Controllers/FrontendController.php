@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\CategoryModel;
 use App\Model\ProductModel;
 use App\Model\ProductReviewModel;
+use App\Model\PointModel;
 use Illuminate\Support\Facades\DB;
 
 
@@ -13,8 +14,19 @@ class FrontendController extends Controller
 {
     public function index()
     {
-    	$data['category'] = CategoryModel::all();
-    	$data['product'] = ProductModel::all();    
+        if (!empty(auth()->user()->id)) {
+            $cek_available_point = PointModel::where('user_id', auth()->user()->id)->first();
+            if (empty($cek_available_point)) {
+                $insert = new PointModel();
+                $insert->user_id = auth()->user()->id;
+                $insert->point = 0;
+                $insert->created_by = auth()->user()->id;
+                $insert->created_at =  date("Y-m-d H:i:s");   
+                $insert->save();
+            }            
+        }
+        $data['category'] = CategoryModel::all();
+        $data['product'] = ProductModel::all();    
         return view('welcome', $data);
     }
 
